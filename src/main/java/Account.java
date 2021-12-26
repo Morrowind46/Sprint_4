@@ -1,5 +1,9 @@
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
+import static java.util.Objects.*;
+
 public class Account {
 
     private final String name;
@@ -24,17 +28,21 @@ public class Account {
 
 // количество вхождений символа в строку 2ой способ: StringUtils.countMatches(строка, знак, который считаем);
 
-        return
+        if (name == null) {
+            return false;
+        } else {
+            return
                 name.length () >= 3 && // в строке не меньше 3 символов
                 name.length () <= 19 && // в строке не больше 19 символов
                 StringUtils.countMatches(name, " ") == 1 && // в строке есть только один пробел
                 !(name.startsWith (" ")) && // пробел стоит не в начале строки
                 !(name.endsWith (" ")); // пробел стоит не в конце строки
+                }
     }
 
-// Проверить все условия с помощью регулярных выражений и метода matches():
-//    public boolean checkNameToEmbossMatches() {
-//        return name.matches ("");
+//     Проверить все условия с помощью регулярных выражений и метода matches():
+//        public boolean checkNameToEmbossMatches() {
+//        return name.matches ("(?=.{3,19}$)[А-Яа-я]+\\s[А-Яа-я]+");
 //    }
 
 }
